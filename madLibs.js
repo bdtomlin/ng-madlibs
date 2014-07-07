@@ -16,11 +16,11 @@ angular.module('madLibs', [])
     $scope.placeholders = angular.copy($scope.initialValues);
     $scope.inputs = $scope.initialValues;
 
+    var conversions = {'he': 'she', 'him': 'her', 'his': 'her'};
     $scope.genderize = function(pronoun){
       if ($scope.inputs.gender === 'male'){
         return pronoun;
       } else {
-        var conversions = {'he': 'she', 'him': 'her', 'his': 'her'};
         return conversions[pronoun];
       }
     };
