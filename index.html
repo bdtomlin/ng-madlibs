@@ -14,40 +14,30 @@
     </header>
     <div class="inputs clearfix">
       <h2>Select a gender:</h2>
-      <select ng-model="inputs.gender">
+      <select ng-model="gender">
         <option value="male">male</option>
         <option value="female">female</option>
       </select>
       <h2>Provide the following words:</h2>
-      <div class="col">
-        <input type="text" class="name" ng-model="inputs.name" placeholder="{{placeholders.name}}">
-        <input type="text" class="job-title" ng-model="inputs.jobTitle" placeholder="{{placeholders.jobTitle}}">
-        <input type="text" class="tedious-task" ng-model="inputs.tediousTask" placeholder="{{placeholders.tediousTask}}">
-      </div>
-      <div class="col">
-        <input type="text" class="dirty-task" ng-model="inputs.dirtyTask " placeholder="{{placeholders.dirtyTask }}">
-        <input type="text" class="celebrity" ng-model="inputs.celebrity" placeholder="{{placeholders.celebrity}}">
-        <input type="text" class="useless-skill" ng-model="inputs.uselessSkill" placeholder="{{placeholders.uselessSkill}}">
-      </div>
-      <div class="col">
-        <input type="text" class="obnoxious-celebrity" ng-model="inputs.obnoxiousCelebrity" placeholder="{{placeholders.obnoxiousCelebrity}}">
-        <input type="text" class="huge-number" ng-model="inputs.hugeNumber" placeholder="{{placeholders.hugeNumber}}">
-        <input type="text" class="adjective" ng-model="inputs.adjective" placeholder="{{placeholders.adjective}}">
+      <div class="row clearfix" ng-repeat="group in inputGroups">
+        <div class="col" ng-repeat="(index, input) in group">
+          <input type="text" class="{{input['attr']}}" ng-model="input['value']" placeholder="{{placeholders[index]['value']}}" >
+        </div>
       </div>
     </div>
     <div class="madlib">
       <p>
-        <span class="mad-input">{{inputs.name}}</span> was a <span class="mad-input">{{inputs.jobTitle}}</span> who loved technology. Although {{genderize('he')}}
-        loved parts of {{genderize('his')}} job, {{genderize('he')}} absolutely hated  <span class="mad-input">{{inputs.tediousTask}}</span> and
-        <span class="mad-input">{{inputs.dirtyTask}}</span>. So, <span class="mad-input">{{inputs.name}}</span> met with {{genderize('his')}} life mentor
-        <span class="mad-input">{{inputs.celebrity}}</span> who told {{genderize('him')}} to learn how to <span class="mad-input">{{inputs.uselessSkill}}</span> with
-        Thinkful. Thinkful didn't offer a course on <span class="mad-input">{{inputs.uselessSkill}}</span> so {{genderize('he')}}
+        <span class="mad-input">{{input('name')}}</span> was a <span class="mad-input">{{input('jobTitle')}}</span> who loved technology. Although {{genderize('he')}}
+        loved parts of {{genderize('his')}} job, {{genderize('he')}} absolutely hated  <span class="mad-input">{{input('tediousTask')}}</span> and
+        <span class="mad-input">{{input('dirtyTask')}}</span>. So, <span class="mad-input">{{input('name')}}</span> met with {{genderize('his')}} life mentor
+        <span class="mad-input">{{input('celebrity')}}</span> who told {{genderize('him')}} to learn how to <span class="mad-input">{{input('uselessSkill')}}</span> with
+        Thinkful. Thinkful didn't offer a course on <span class="mad-input">{{input('uselessSkill')}}</span> so {{genderize('he')}}
         studied programming instead. 
       </p>
       <p>
-        What a great decision! With {{genderize('his')}} new skills, <span class="mad-input">{{inputs.name}}</span> built a(n)
-        <span class="mad-input">{{inputs.adjective}}</span> robot named <span class="mad-input">{{inputs.obnoxiousCelebrity}}</span> that not only loved
-        <span class="mad-input">{{inputs.dirtyTask}}</span> but did it <span class="mad-input">{{inputs.hugeNumber}}</span> times faster. 
+        What a great decision! With {{genderize('his')}} new skills, <span class="mad-input">{{input('name')}}</span> built a(n)
+        <span class="mad-input">{{input('adjective')}}</span> robot named <span class="mad-input">{{input('obnoxiousCelebrity')}}</span> that not only loved
+        <span class="mad-input">{{input('dirtyTask')}}</span> but did it <span class="mad-input">{{input('hugeNumber')}}</span> times faster. 
       </p>
     </div>
   </div>
