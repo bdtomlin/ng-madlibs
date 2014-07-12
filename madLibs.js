@@ -1,34 +1,54 @@
 angular.module('madLibs', [])
   .controller('HomeCtrl', ['$scope', function($scope){
-    $scope.genderOptions = ['male', 'female'];
-    $scope.gender = 'male';
-    $scope.inputs = [
-      {attr: 'name', value: 'Name'},
-      {attr: 'dirtyTask', value: 'dirty task'},
-      {attr: 'obnoxiousCelebrity', value: 'Obnoxious Celebrity'},
-      {attr: 'jobTitle', value: 'Job Title'},
-      {attr: 'celebrity', value: 'Celebrity'},
-      {attr: 'hugeNumber', value: 'huge number'},
-      {attr: 'tediousTask', value: 'tedious task'},
-      {attr: 'uselessSkill', value: 'useless skill'},
-      {attr: 'adjective', value: 'adjective'}
+    $scope.data = {};
+    $scope.data.genderOptions = ['male', 'female'];
+    $scope.data.gender = 'male';
+
+    $scope.data.inputs = [
+      {attr: 'name', value: '', placeholder: 'Name'},
+      {attr: 'dirtyTask', value: '', placeholder: 'dirty task'},
+      {attr: 'obnoxiousCelebrity', value: '', placeholder: 'Obnoxious Celebrity'},
+      {attr: 'jobTitle', value: null, placeholder: 'Job Title'},
+      {attr: 'celebrity', value: null, placeholder: 'Celebrity'},
+      {attr: 'hugeNumber', value: null, placeholder: 'huge number', type: 'number', errorMessage: 'Enter a valid number'},
+      {attr: 'tediousTask', value: null, placeholder: 'tedious task'},
+      {attr: 'uselessSkill', value: null, placeholder: 'useless skill'},
+      {attr: 'adjective', value: null, placeholder: 'adjective'}
     ];
-    $scope.placeholders = angular.copy($scope.inputs);
 
     $scope.input = function(name){
-      for(var i=0, length=$scope.inputs.length; i<length; i++){
-        if($scope.inputs[i]['attr'] === name){
-          return $scope.inputs[i]['value'];
+      for(var i=0, length=$scope.data.inputs.length; i<length; i++){
+        if($scope.data.inputs[i]['attr'] === name){
+          return $scope.data.inputs[i]['value'];
         }
       }
     }
 
     var conversions = {'he': 'she', 'him': 'her', 'his': 'her'};
     $scope.genderize = function(pronoun){
-      if ($scope.gender === 'male'){
+      if ($scope.data.gender === 'male'){
         return pronoun;
       } else {
         return conversions[pronoun];
       }
+    };
+
+    $scope.generateMadLib = function(){
+      if($scope.myForm.$valid){
+        $scope.generated = true;
+      }
+    };
+
+    var resetData = function(){
+      $scope.submitted = false;
+      $scope.data.gender = 'male';
+      for(var i=0, length=$scope.data.inputs.length; i<length; i++){
+        $scope.data.inputs[i].value = null;
+      }
+    }
+
+    $scope.startOver = function(){
+      $scope.generated = false;
+      resetData();
     };
   }]);
