@@ -6,13 +6,14 @@
   <link rel="stylesheet" href="./app.css">
 </head>
 <body ng-app="madLibs">
-  <div class="container" ng-controller="HomeCtrl">
+  <div class="container">
     <header class="clearfix">
       <div class="brand"><img src="./images/mad-lib-happy-face.png" alt=""></div>
       <div class="banner"><img src="./images/ng-mad-libs-logo.png" alt=""></div>
       <h1>Automate This!</h1>
     </header>
-    <div class="inputs clearfix" ng-show="!generated">
+
+    <div class="inputs clearfix" ng-show="!hideInputs" ng-controller="InputCtrl">
       <form name="myForm" ng-submit="submitted=true; generateMadLib()" novalidate>
         <h2>Select a gender:</h2>
         <select ng-model="data.gender" ng-options="gender for gender in data.genderOptions"></select>
@@ -33,19 +34,19 @@
         <button type="submit">Generate Mad Lib</button>
       </form>
     </div>
-    <div class="madlib clearfix" ng-show="generated">
+    <div class="madlib clearfix" ng-show="showMadlib" ng-controller="MadlibCtrl">
       <p>
-        <span class="mad-input">{{input('name')}}</span> was a <span class="mad-input">{{input('jobTitle')}}</span> who loved technology. Although {{genderize('he')}}
-        loved parts of {{genderize('his')}} job, {{genderize('he')}} absolutely hated  <span class="mad-input">{{input('tediousTask')}}</span> and
-        <span class="mad-input">{{input('dirtyTask')}}</span>. So, <span class="mad-input">{{input('name')}}</span> met with {{genderize('his')}} life mentor
-        <span class="mad-input">{{input('celebrity')}}</span> who told {{genderize('him')}} to learn how to <span class="mad-input">{{input('uselessSkill')}}</span> with
-        Thinkful. Thinkful didn't offer a course on <span class="mad-input">{{input('uselessSkill')}}</span> so {{genderize('he')}}
+        <span class="mad-input">{{data.name}}</span> was a <span class="mad-input">{{data.jobTitle}}</span> who loved technology. Although {{genderize('he')}}
+        loved parts of {{genderize('his')}} job, {{genderize('he')}} absolutely hated  <span class="mad-input">{{data.tediousTask}}</span> and
+        <span class="mad-input">{{data.dirtyTask}}</span>. So, <span class="mad-input">{{data.name}}</span> met with {{genderize('his')}} life mentor
+        <span class="mad-input">{{data.celebrity}}</span> who told {{genderize('him')}} to learn how to <span class="mad-input">{{data.uselessSkill}}</span> with
+        Thinkful. Thinkful didn't offer a course on <span class="mad-input">{{data.uselessSkill}}</span> so {{genderize('he')}}
         studied programming instead. 
       </p>
       <p>
-        What a great decision! With {{genderize('his')}} new skills, <span class="mad-input">{{input('name')}}</span> built a(n)
-        <span class="mad-input">{{input('adjective')}}</span> robot named <span class="mad-input">{{input('obnoxiousCelebrity')}}</span> that not only loved
-        <span class="mad-input">{{input('dirtyTask')}}</span> but did it <span class="mad-input">{{input('hugeNumber')}}</span> times faster. 
+        What a great decision! With {{genderize('his')}} new skills, <span class="mad-input">{{data.name}}</span> built a(n)
+        <span class="mad-input">{{data.adjective}}</span> robot named <span class="mad-input">{{data.obnoxiousCelebrity}}</span> that not only loved
+        <span class="mad-input">{{data.dirtyTask}}</span> but did it <span class="mad-input">{{data.hugeNumber}}</span> times faster. 
       </p>
       <button ng-click="startOver()">Start Over</button>
     </div>
