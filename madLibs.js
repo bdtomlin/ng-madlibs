@@ -13,6 +13,7 @@ angular.module('madLibs', [])
       {attr: 'uselessSkill', value: 'useless skill'},
       {attr: 'adjective', value: 'adjective'}
     ];
+    $scope.placeholders = angular.copy($scope.inputs);
 
     $scope.input = function(name){
       for(var i=0, length=$scope.inputs.length; i<length; i++){
@@ -21,17 +22,6 @@ angular.module('madLibs', [])
         }
       }
     }
-
-    $scope.inputGroups = [[]];
-    for(var i=0, length=$scope.inputs.length; i<length; i++){
-      if($scope.inputGroups[$scope.inputGroups.length - 1].length === 3){
-        $scope.inputGroups.push([$scope.inputs[i]]);
-      }else{
-        $scope.inputGroups[$scope.inputGroups.length - 1].push($scope.inputs[i]);
-      }
-    }
-
-    $scope.placeholders = angular.copy($scope.inputs);
 
     var conversions = {'he': 'she', 'him': 'her', 'his': 'her'};
     $scope.genderize = function(pronoun){

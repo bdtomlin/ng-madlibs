@@ -88,9 +88,8 @@ input.adjective {
   width: 120px;
 }
 
-.col {
-  width: 229px;
-  margin: 10px 7px 10px 4px;
+.input-container {
+  width: 33.33%;
   float: left;
   text-align: center;
 }

@@ -19,10 +19,8 @@
         <option value="female">female</option>
       </select>
       <h2>Provide the following words:</h2>
-      <div class="row clearfix" ng-repeat="group in inputGroups">
-        <div class="col" ng-repeat="(index, input) in group">
-          <input type="text" class="{{input['attr']}}" ng-model="input['value']" placeholder="{{placeholders[index]['value']}}" >
-        </div>
+      <div class="input-container" ng-repeat="(index, input) in inputs">
+        <input type="text" class="{{input['attr']}}" ng-model="input['value']" placeholder="{{placeholders[index]['value']}}" >
       </div>
     </div>
     <div class="madlib">
