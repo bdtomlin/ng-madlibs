@@ -13,7 +13,7 @@
       <h1>Automate This!</h1>
     </header>
 
-    <div class="inputs clearfix" ng-show="!hideInputs" ng-controller="InputCtrl">
+    <div class="inputs clearfix" ng-hide="hideInputs" ng-controller="InputCtrl">
       <form name="myForm" ng-submit="submitted=true; generateMadLib()" novalidate>
         <h2>Select a gender:</h2>
         <select ng-model="data.gender" ng-options="gender for gender in data.genderOptions"></select>
