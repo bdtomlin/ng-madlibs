@@ -15,6 +15,8 @@ body {
   width: 801px;
   margin: auto;
   border: 4px solid #222;
+  height: 800px;
+  position: relative;
 }
 
 header {
@@ -51,6 +53,7 @@ h1 {
 
 .inputs {
   padding: 20px 40px;
+  position: absolute;
 }
 
 .inputs input {
@@ -116,6 +119,7 @@ input.error {
 
 .madlib {
   padding: 20px 40px;
+  position: absolute;
 }
 
 .madlib p {
@@ -130,4 +134,39 @@ input.error {
 button {
   float: right;
   margin: 20px 0;
+}
+
+
+/* animations */
+
+.inputs.ng-hide-add, .madlib.ng-hide-add{
+  -webkit-animation:1s hide_inputs;
+  animation:0.5s hide_inputs;
+}
+
+.madlib.ng-hide-remove, .inputs.ng-hide-remove{
+  -webkit-animation:0.5s show_madlib;
+  animation:1s show_madlib;
+  -webkit-animation-delay:0.5s;
+  animation-delay:1s;
+}
+
+@keyframes hide_inputs {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+
+@-webkit-keyframes hide_inputs {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+
+@keyframes show_madlib {
+  from { opacity:0; }
+  to { opacity:1; }
+}
+
+@-webkit-keyframes show_madlib  {
+  from { opacity:0; }
+  to { opacity:1; }
 }

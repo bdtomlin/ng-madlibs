@@ -1,4 +1,4 @@
-angular.module('madLibs', [])
+angular.module('madLibs', ['ngAnimate'])
   .controller('InputCtrl', ['$scope', '$rootScope', function($scope, $rootScope){
     $scope.data = {};
     $scope.data.genderOptions = ['male', 'female'];
